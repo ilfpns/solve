@@ -1,36 +1,38 @@
-#include<iostream>
-#define endl "\n"
- 
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+#include <vector>
+#include <algorithm>
 using namespace std;
- 
-void solve(long long x,long long y){
-    long long z = (100 * y) / x;
-    
-    if(z>= 99){
-        cout<<"-1"<<endl;
-        return;
-    }
-    long long right = 1000000000;
-    long long left = 0;
-    
-    while(left<=right){
-        long long mid = left + right;
-        mid = mid / 2;
-        int temp = (100 * (y + mid)) / (x + mid);
-        if(temp > z){
-            right = mid-1;
-        }
-        else if(temp <= z){
-            left = mid +1;
-        }
-    }
- 
-    cout<<left<<endl;
-}
- 
-int main(){
-    int x,y;
-    cin>>x>>y;
-    solve(x,y);
-    return 0;
+
+int main() {
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+	
+	long long X, Y, Z; cin >> X >> Y;
+
+	Z = (100 * Y) / X;
+
+	if (Z >= 99) {
+		cout << "-1" << endl;
+		return 0;
+	}
+
+    long long left = 0, right = 1e9;
+
+	while (left <= right) {
+		long long mid = (left + right);
+		mid = mid / 2;
+		int temp = (100 * (Y + mid)) / (X + mid);
+
+		if (temp > Z) {
+			right = mid - 1;
+		}
+		else if (temp <= Z){
+			left = mid + 1;
+		}
+	}
+
+	cout << left << endl;
+	return 0;
 }
