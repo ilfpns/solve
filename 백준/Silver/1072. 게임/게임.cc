@@ -1,35 +1,36 @@
-#include <iostream>
+#include<iostream>
+#define endl "\n"
+ 
 using namespace std;
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+ 
+void solve(long long x,long long y){
+    long long z = (100 * y) / x;
     
-    long long X, Y;
-    cin >> X >> Y;
-
-    long long originZ = (Y * 100) / X;
-
-    if (originZ >= 99) {
-        cout << -1 << endl;
-        return 0;
+    if(z>= 99){
+        cout<<"-1"<<endl;
+        return;
     }
-
-    long long left = 1, right = 1e9;
-    long long result = -1;
-
-    while (left <= right) {
-        long long mid = (left + right) / 2;
-        long long temp = ((Y + mid) * 100) / (X + mid);
-
-        if (temp > originZ) {
-            result = mid;
-            right = mid - 1;
-        } else {
-            left = mid + 1;
+    long long right = 1000000000;
+    long long left = 0;
+    
+    while(left<=right){
+        long long mid = left + right;
+        mid = mid / 2;
+        int temp = (100 * (y + mid)) / (x + mid);
+        if(temp > z){
+            right = mid-1;
+        }
+        else if(temp <= z){
+            left = mid +1;
         }
     }
-
-    cout << result << endl;
+ 
+    cout<<left<<endl;
+}
+ 
+int main(){
+    int x,y;
+    cin>>x>>y;
+    solve(x,y);
     return 0;
 }
