@@ -7,19 +7,18 @@ using namespace std;
 int main() {
     string a, b;
     cin >> a >> b;
+    int sum = 0;
+        
+    int dif = a.length();
 
-    int min_diff = a.length(); // 최대 차이는 A의 길이만큼
-
-    for (int i = 0; i <= b.length() - a.length(); ++i) {
-        int diff = 0;
-        for (int j = 0; j < a.length(); ++j) {
-            if (a[j] != b[i + j]) {
-                ++diff;
-            }
+    for (int i = 0; i <= b.length() - a.length(); i++) {
+        int temp = 0;
+        for (int j = 0; j < a.length(); j++) {
+            if (a[j] != b[i + j])
+                temp++;
         }
-        min_diff = min(min_diff, diff);
+        dif = min(dif, temp);
     }
-
-    cout << min_diff << '\n';
+    cout << dif;
     return 0;
 }
